@@ -15,8 +15,6 @@
 		74893919185E24A1001DF76E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 74893918185E24A1001DF76E /* main.m */; };
 		7489391D185E24A1001DF76E /* SGAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7489391C185E24A1001DF76E /* SGAAppDelegate.m */; };
 		74893920185E24A1001DF76E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7489391E185E24A1001DF76E /* Main.storyboard */; };
-		74893923185E24A1001DF76E /* SGAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74893922185E24A1001DF76E /* SGAViewController.m */; };
-		74893926185E24A1001DF76E /* SGAMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 74893925185E24A1001DF76E /* SGAMyScene.m */; };
 		74893928185E24A1001DF76E /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 74893927185E24A1001DF76E /* Spaceship.png */; };
 		7489392A185E24A1001DF76E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74893929185E24A1001DF76E /* Images.xcassets */; };
 		74893931185E24A1001DF76E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74893930185E24A1001DF76E /* XCTest.framework */; };
@@ -24,6 +22,11 @@
 		74893933185E24A1001DF76E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7489390E185E24A1001DF76E /* UIKit.framework */; };
 		7489393B185E24A1001DF76E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74893939185E24A1001DF76E /* InfoPlist.strings */; };
 		7489393D185E24A1001DF76E /* SimpleGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7489393C185E24A1001DF76E /* SimpleGameTests.m */; };
+		7489394D185E2D19001DF76E /* SGAPlayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7489394C185E2D19001DF76E /* SGAPlayersViewController.m */; };
+		74893950185E2D29001DF76E /* SGANewPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7489394F185E2D29001DF76E /* SGANewPlayerViewController.m */; };
+		74893954185E38C9001DF76E /* SGAPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74893953185E38C9001DF76E /* SGAPlayer.m */; };
+		7489395A185E41EF001DF76E /* SGAGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74893959185E41EF001DF76E /* SGAGameViewController.m */; };
+		748939A7185E4844001DF76E /* SGAGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 748939A6185E4844001DF76E /* SGAGameScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,10 +52,6 @@
 		7489391B185E24A1001DF76E /* SGAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGAAppDelegate.h; sourceTree = "<group>"; };
 		7489391C185E24A1001DF76E /* SGAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SGAAppDelegate.m; sourceTree = "<group>"; };
 		7489391F185E24A1001DF76E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		74893921185E24A1001DF76E /* SGAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGAViewController.h; sourceTree = "<group>"; };
-		74893922185E24A1001DF76E /* SGAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SGAViewController.m; sourceTree = "<group>"; };
-		74893924185E24A1001DF76E /* SGAMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGAMyScene.h; sourceTree = "<group>"; };
-		74893925185E24A1001DF76E /* SGAMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SGAMyScene.m; sourceTree = "<group>"; };
 		74893927185E24A1001DF76E /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		74893929185E24A1001DF76E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7489392F185E24A1001DF76E /* SimpleGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +59,16 @@
 		74893938185E24A1001DF76E /* SimpleGameTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleGameTests-Info.plist"; sourceTree = "<group>"; };
 		7489393A185E24A1001DF76E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7489393C185E24A1001DF76E /* SimpleGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleGameTests.m; sourceTree = "<group>"; };
+		7489394B185E2D19001DF76E /* SGAPlayersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAPlayersViewController.h; sourceTree = "<group>"; };
+		7489394C185E2D19001DF76E /* SGAPlayersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAPlayersViewController.m; sourceTree = "<group>"; };
+		7489394E185E2D29001DF76E /* SGANewPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGANewPlayerViewController.h; sourceTree = "<group>"; };
+		7489394F185E2D29001DF76E /* SGANewPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGANewPlayerViewController.m; sourceTree = "<group>"; };
+		74893952185E38C9001DF76E /* SGAPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAPlayer.h; sourceTree = "<group>"; };
+		74893953185E38C9001DF76E /* SGAPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAPlayer.m; sourceTree = "<group>"; };
+		74893958185E41EF001DF76E /* SGAGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAGameViewController.h; sourceTree = "<group>"; };
+		74893959185E41EF001DF76E /* SGAGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAGameViewController.m; sourceTree = "<group>"; };
+		748939A5185E4844001DF76E /* SGAGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAGameScene.h; sourceTree = "<group>"; };
+		748939A6185E4844001DF76E /* SGAGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAGameScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,13 +130,12 @@
 		74893912185E24A1001DF76E /* SimpleGame */ = {
 			isa = PBXGroup;
 			children = (
+				74893948185E2CA9001DF76E /* View */,
+				74893946185E2CA9001DF76E /* Controller */,
+				74893947185E2CA9001DF76E /* Model */,
 				7489391B185E24A1001DF76E /* SGAAppDelegate.h */,
 				7489391C185E24A1001DF76E /* SGAAppDelegate.m */,
 				7489391E185E24A1001DF76E /* Main.storyboard */,
-				74893921185E24A1001DF76E /* SGAViewController.h */,
-				74893922185E24A1001DF76E /* SGAViewController.m */,
-				74893924185E24A1001DF76E /* SGAMyScene.h */,
-				74893925185E24A1001DF76E /* SGAMyScene.m */,
 				74893927185E24A1001DF76E /* Spaceship.png */,
 				74893929185E24A1001DF76E /* Images.xcassets */,
 				74893913185E24A1001DF76E /* Supporting Files */,
@@ -162,6 +170,77 @@
 				74893939185E24A1001DF76E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		74893946185E2CA9001DF76E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7489394A185E2CFE001DF76E /* PlayersViewController */,
+				74893949185E2CFE001DF76E /* NewPlayerViewController */,
+				74893957185E408D001DF76E /* GameViewController */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		74893947185E2CA9001DF76E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				74893951185E38B9001DF76E /* SGAPlayer */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		74893948185E2CA9001DF76E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				748939A4185E481A001DF76E /* GameScene */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		74893949185E2CFE001DF76E /* NewPlayerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7489394E185E2D29001DF76E /* SGANewPlayerViewController.h */,
+				7489394F185E2D29001DF76E /* SGANewPlayerViewController.m */,
+			);
+			path = NewPlayerViewController;
+			sourceTree = "<group>";
+		};
+		7489394A185E2CFE001DF76E /* PlayersViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7489394B185E2D19001DF76E /* SGAPlayersViewController.h */,
+				7489394C185E2D19001DF76E /* SGAPlayersViewController.m */,
+			);
+			path = PlayersViewController;
+			sourceTree = "<group>";
+		};
+		74893951185E38B9001DF76E /* SGAPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				74893952185E38C9001DF76E /* SGAPlayer.h */,
+				74893953185E38C9001DF76E /* SGAPlayer.m */,
+			);
+			path = SGAPlayer;
+			sourceTree = "<group>";
+		};
+		74893957185E408D001DF76E /* GameViewController */ = {
+			isa = PBXGroup;
+			children = (
+				74893958185E41EF001DF76E /* SGAGameViewController.h */,
+				74893959185E41EF001DF76E /* SGAGameViewController.m */,
+			);
+			path = GameViewController;
+			sourceTree = "<group>";
+		};
+		748939A4185E481A001DF76E /* GameScene */ = {
+			isa = PBXGroup;
+			children = (
+				748939A5185E4844001DF76E /* SGAGameScene.h */,
+				748939A6185E4844001DF76E /* SGAGameScene.m */,
+			);
+			path = GameScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,9 +342,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74893923185E24A1001DF76E /* SGAViewController.m in Sources */,
+				7489394D185E2D19001DF76E /* SGAPlayersViewController.m in Sources */,
+				74893950185E2D29001DF76E /* SGANewPlayerViewController.m in Sources */,
 				7489391D185E24A1001DF76E /* SGAAppDelegate.m in Sources */,
-				74893926185E24A1001DF76E /* SGAMyScene.m in Sources */,
+				7489395A185E41EF001DF76E /* SGAGameViewController.m in Sources */,
+				74893954185E38C9001DF76E /* SGAPlayer.m in Sources */,
+				748939A7185E4844001DF76E /* SGAGameScene.m in Sources */,
 				74893919185E24A1001DF76E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,6 +425,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -376,6 +459,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -395,6 +479,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleGame/SimpleGame-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "SimpleGame/SimpleGame-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
@@ -409,6 +494,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleGame/SimpleGame-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "SimpleGame/SimpleGame-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;

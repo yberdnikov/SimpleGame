@@ -1,14 +1,13 @@
 //
-//  SGAViewController.h
+//  SGAGameScene.h
 //  SimpleGame
 //
-
+//  Created by Yuriy Berdnikov on 12/15/13.
 //  Copyright (c) 2013 Yuriy Berdnikov. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 
-@interface SGAViewController : UIViewController
+@interface SGAGameScene : SKScene
 
 @end
