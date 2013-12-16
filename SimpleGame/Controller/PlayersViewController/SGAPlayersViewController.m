@@ -7,9 +7,14 @@
 //
 
 #import "SGAPlayersViewController.h"
+#import "SGAPlayer.h"
+#import "SGAGameViewController.h"
 
-@interface SGAPlayersViewController ()
+@interface SGAPlayersViewController () <UIAlertViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *contentTableView;
+@property (nonatomic, strong) NSMutableArray *contentDataSource;
+@property (nonatomic, strong) SGAPlayer *selectedPlayer;
 @end
 
 @implementation SGAPlayersViewController
@@ -29,7 +34,14 @@
 	// Do any additional setup after loading the view.
     
     self.title = NSLocalizedString(@"Players", nil);
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
+    [self loadPlayers];
+    [self.contentTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,11 +52,87 @@
 
 - (void)loadPlayers
 {
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsPath = [paths objectAtIndex:0];
-//    
-//    NSFileManager *manager = [[NSFileManager alloc] init];
-//    NSDirectoryEnumerator *fileEnumerator = [manager enumeratorAtPath:documentsPath];
+    [self.contentDataSource removeAllObjects];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    
+    NSError *error;
+    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:[[NSURL alloc] initFileURLWithPath:documentsPath]
+                                                      includingPropertiesForKeys:@[]
+                                                                         options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                                           error:&error];
+    if (error)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                        message:error.localizedDescription
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                              otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
+    self.contentDataSource = [[NSMutableArray alloc] initWithArray:contents];
+}
+
+#pragma mark - UITableViewDataSource methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.contentDataSource.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *cellIdentifier = @"cellIdentifier";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    
+    NSString *filename = [[self.contentDataSource objectAtIndex:indexPath.row] lastPathComponent];
+    cell.textLabel.text = [[filename componentsSeparatedByString:@"."] objectAtIndex:0];
+    
+    return cell;
+}
+
+#pragma mark - UITableViewSelegate methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    self.selectedPlayer = [NSKeyedUnarchiver unarchiveObjectWithFile:[self.contentDataSource objectAtIndex:indexPath.row]];
+    
+    NSString *alertMessage = [[NSString alloc] initWithFormat:@"%@: %@\n%@: %d",
+                              NSLocalizedString(@"Nickname", nil), self.selectedPlayer.nickname,
+                              NSLocalizedString(@"Scores", nil), self.selectedPlayer.score];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Player Info", nil)
+                                                    message:alertMessage
+                                                   delegate:self
+                                          cancelButtonTitle:NSLocalizedString(@"Close", nil)
+                                          otherButtonTitles:NSLocalizedString(@"Play game", nil), nil];
+    [alert show];
+}
+
+#pragma mark - UIAlertViewDelegate methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (!buttonIndex)
+        return;
+    
+    SGAGameViewController *gameController = (SGAGameViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"gameViewController"];
+    gameController.playerInfo = self.selectedPlayer;
+    
+    [self.navigationController pushViewController:gameController animated:YES];
 }
 
 @end

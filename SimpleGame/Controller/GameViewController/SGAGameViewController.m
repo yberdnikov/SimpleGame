@@ -9,7 +9,7 @@
 #import "SGAGameViewController.h"
 #import "SGAGameScene.h"
 
-@interface SGAGameViewController ()
+@interface SGAGameViewController () <UIAlertViewDelegate>
 
 @end
 
@@ -29,13 +29,19 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.title = NSLocalizedString(@"Game", nil);
+    
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                target:self
+                                                                                action:@selector(doneButtonPressed)];
+    self.navigationItem.leftBarButtonItem = doneButton;
+    
     // Configure the view.
-    SKView * skView = (SKView *)self.view;
+    SKView *skView = (SKView *)self.view;
     skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [SGAGameScene sceneWithSize:skView.bounds.size];
+    SKScene *scene = [SGAGameScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
@@ -46,6 +52,37 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UIBarButtonItem selector
+
+- (void)doneButtonPressed
+{
+    SKView *skView = (SKView *)self.view;
+    skView.paused = YES;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Finish game ?", nil)
+                                                    message:NSLocalizedString(@"Are you sure you want to end this game ?", nil)
+                                                   delegate:self
+                                          cancelButtonTitle:NSLocalizedString(@"No", nil)
+                                          otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];
+    [alert show];
+}
+
+#pragma mark - UIAlertViewDelegate methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex)
+    {
+        [self.playerInfo serialize];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else
+    {
+        SKView *skView = (SKView *)self.view;
+        skView.paused = NO;
+    }
 }
 
 @end

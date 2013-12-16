@@ -13,6 +13,7 @@
 @interface SGANewPlayerViewController () <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nicknameTextField;
+@property (nonatomic, strong) SGAPlayer *playerInfo;
 
 @end
 
@@ -72,11 +73,11 @@
 
 - (void)createNewPlayer:(NSString *)nickname
 {
-    SGAPlayer *newPlayer = [[SGAPlayer alloc] init];
-    newPlayer.nickname = nickname;
+    self.playerInfo = [[SGAPlayer alloc] init];
+    self.playerInfo.nickname = nickname;
     
     UIAlertView *alert;
-    if ([newPlayer serialize])
+    if ([self.playerInfo serialize])
     {
         alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Player created", nil)
                                            message:NSLocalizedString(@"Player was created. Prepare for game!", nil)
@@ -101,6 +102,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     SGAGameViewController *gameController = (SGAGameViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"gameViewController"];
+    gameController.playerInfo = self.playerInfo;
     
     [self.navigationController pushViewController:gameController animated:YES];
 }

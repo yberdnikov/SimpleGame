@@ -15,7 +15,6 @@
 		74893919185E24A1001DF76E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 74893918185E24A1001DF76E /* main.m */; };
 		7489391D185E24A1001DF76E /* SGAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7489391C185E24A1001DF76E /* SGAAppDelegate.m */; };
 		74893920185E24A1001DF76E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7489391E185E24A1001DF76E /* Main.storyboard */; };
-		74893928185E24A1001DF76E /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 74893927185E24A1001DF76E /* Spaceship.png */; };
 		7489392A185E24A1001DF76E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74893929185E24A1001DF76E /* Images.xcassets */; };
 		74893931185E24A1001DF76E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74893930185E24A1001DF76E /* XCTest.framework */; };
 		74893932185E24A1001DF76E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7489390A185E24A1001DF76E /* Foundation.framework */; };
@@ -27,6 +26,7 @@
 		74893954185E38C9001DF76E /* SGAPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74893953185E38C9001DF76E /* SGAPlayer.m */; };
 		7489395A185E41EF001DF76E /* SGAGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74893959185E41EF001DF76E /* SGAGameViewController.m */; };
 		748939A7185E4844001DF76E /* SGAGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 748939A6185E4844001DF76E /* SGAGameScene.m */; };
+		748939B8185F9A68001DF76E /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 748939B7185F9A68001DF76E /* Spaceship.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +52,6 @@
 		7489391B185E24A1001DF76E /* SGAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGAAppDelegate.h; sourceTree = "<group>"; };
 		7489391C185E24A1001DF76E /* SGAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SGAAppDelegate.m; sourceTree = "<group>"; };
 		7489391F185E24A1001DF76E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		74893927185E24A1001DF76E /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		74893929185E24A1001DF76E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7489392F185E24A1001DF76E /* SimpleGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		74893930185E24A1001DF76E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -69,6 +68,7 @@
 		74893959185E41EF001DF76E /* SGAGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAGameViewController.m; sourceTree = "<group>"; };
 		748939A5185E4844001DF76E /* SGAGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAGameScene.h; sourceTree = "<group>"; };
 		748939A6185E4844001DF76E /* SGAGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAGameScene.m; sourceTree = "<group>"; };
+		748939B7185F9A68001DF76E /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +136,7 @@
 				7489391B185E24A1001DF76E /* SGAAppDelegate.h */,
 				7489391C185E24A1001DF76E /* SGAAppDelegate.m */,
 				7489391E185E24A1001DF76E /* Main.storyboard */,
-				74893927185E24A1001DF76E /* Spaceship.png */,
+				748939B5185F9A47001DF76E /* Resources */,
 				74893929185E24A1001DF76E /* Images.xcassets */,
 				74893913185E24A1001DF76E /* Supporting Files */,
 			);
@@ -243,6 +243,22 @@
 			path = GameScene;
 			sourceTree = "<group>";
 		};
+		748939B5185F9A47001DF76E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				748939B6185F9A47001DF76E /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		748939B6185F9A47001DF76E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				748939B7185F9A68001DF76E /* Spaceship.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -320,9 +336,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				748939B8185F9A68001DF76E /* Spaceship.png in Resources */,
 				74893917185E24A1001DF76E /* InfoPlist.strings in Resources */,
 				7489392A185E24A1001DF76E /* Images.xcassets in Resources */,
-				74893928185E24A1001DF76E /* Spaceship.png in Resources */,
 				74893920185E24A1001DF76E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

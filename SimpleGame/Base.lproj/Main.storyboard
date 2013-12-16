@@ -104,13 +104,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mSq-d8-Tha">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mSq-d8-Tha">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="qVa-zX-s58" id="6kM-Qn-P49"/>
+                                    <outlet property="delegate" destination="qVa-zX-s58" id="hJT-5n-rZm"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="mSq-d8-Tha" secondAttribute="trailing" id="6Gh-JJ-lM1"/>
+                            <constraint firstItem="cru-VI-Ely" firstAttribute="top" secondItem="mSq-d8-Tha" secondAttribute="bottom" id="8Bz-zD-QOp"/>
+                            <constraint firstItem="mSq-d8-Tha" firstAttribute="leading" secondItem="t8H-Pe-mkw" secondAttribute="leading" id="NTW-7V-HY3"/>
+                            <constraint firstItem="mSq-d8-Tha" firstAttribute="top" secondItem="t8H-Pe-mkw" secondAttribute="top" id="obt-VN-VeA"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="szt-Wq-td9">
                         <barButtonItem key="rightBarButtonItem" title="New Player" id="3Et-CG-662">
@@ -119,6 +129,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="contentTableView" destination="mSq-d8-Tha" id="sjj-Zn-jjs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kYo-3c-d64" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
