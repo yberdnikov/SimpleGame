@@ -10,4 +10,6 @@
 
 @interface SGAGameScene : SKScene
 
+@property (nonatomic, assign) NSInteger scores;
+
 @end
