@@ -41,7 +41,9 @@
     skView.showsFPS = YES;
     
     // Create and configure the scene.
-    SKScene *scene = [SGAGameScene sceneWithSize:skView.bounds.size];
+    SGAGameScene *scene = [SGAGameScene sceneWithSize:skView.bounds.size];
+    scene.scores = self.playerInfo.score;
+    
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
@@ -60,6 +62,8 @@
 {
     SKView *skView = (SKView *)self.view;
     skView.paused = YES;
+    
+    self.playerInfo.score = ((SGAGameScene *)skView.scene).scores;
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Finish game ?", nil)
                                                     message:NSLocalizedString(@"Are you sure you want to end this game ?", nil)
