@@ -14,6 +14,7 @@
 @property (nonatomic, strong) SKLabelNode *scoreLabel;
 
 @property (nonatomic, strong) NSMutableArray *sprites;
+@property (nonatomic, strong) NSArray *spriteActions;
 @end
 
 @implementation SGAGameScene
@@ -32,9 +33,11 @@
         
         [self addChild:self.scoreLabel];
         
-        [self.sprites enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            [self moveSpriteRandomly:obj];
-        }];
+        self.spriteActions = @[NSStringFromSelector(@selector(moveSpriteRandomly:)),
+                               NSStringFromSelector(@selector(rotateSpriteRandomly:)),
+                               NSStringFromSelector(@selector(scaleSpriteRandomly:))];
+        
+        [self applyRandomActionToSprites:self.sprites];
     }
     
     return self;
@@ -65,19 +68,6 @@
     self.scoreLabel.text = [[NSString alloc] initWithFormat:@"%@: %d", NSLocalizedString(@"Scores", nil), scores];
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    /* Called when a touch begins */
-
-    for (UITouch *touch in touches)
-    {
-        [self.children enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            SKSpriteNode *sprite = (SKSpriteNode *)obj;
-            sprite.paused = !sprite.paused;
-        }];
-    }
-}
-
 - (void)loadSprites
 {
     self.sprites = [[NSMutableArray alloc] init];
@@ -86,10 +76,10 @@
     {
         SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
         
-        sprite.position = CGPointMake(arc4random() % (NSInteger)self.size.width, arc4random() % (NSInteger)self.size.height);
-        sprite.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:sprite.size];
+        sprite.position = CGPointMake(arc4random_uniform((NSInteger)self.size.width), arc4random_uniform((NSInteger)self.size.height));
+        sprite.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:MAX(sprite.size.width, sprite.size.height) / 2]; // circle looks better
         sprite.physicsBody.dynamic = YES;
-        sprite.physicsBody.allowsRotation = NO;
+        sprite.physicsBody.allowsRotation = YES;
         sprite.physicsBody.categoryBitMask = 1;
         sprite.physicsBody.contactTestBitMask = 1;
         sprite.physicsBody.collisionBitMask = 1;
@@ -99,10 +89,59 @@
     }
 }
 
+- (void)update:(CFTimeInterval)currentTime
+{
+    /* Called before each frame is rendered */
+}
+
+#pragma mark - Touch handling
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    /* Called when a touch begins */
+    
+    if (touches.count == 1)
+    {
+        UITouch *touch = [touches anyObject];
+        
+        if (touch.tapCount == 1)
+            [self performSelector:@selector(applyRandomActionToSprites:) withObject:self.sprites afterDelay:0.3];
+        else
+        {
+            [NSObject cancelPreviousPerformRequestsWithTarget:self];
+            self.paused = !self.paused;
+        }
+    }
+    else if (touches.count > 1)
+    {
+        [NSObject cancelPreviousPerformRequestsWithTarget:self];
+        self.paused = !self.paused;
+    }
+}
+
+#pragma mark - Actions
+
+- (void)applyRandomActionToSprites:(NSArray *)sprites
+{
+    [sprites makeObjectsPerformSelector:@selector(removeAllActions)];
+    
+    NSInteger actionIndex = arc4random_uniform(self.spriteActions.count);
+    SEL randomAction = NSSelectorFromString([self.spriteActions objectAtIndex:actionIndex]);
+    
+    
+    //can be much easy - [self performSelector ..], but compiler shows warning, so a little more advanced
+    IMP imp = [self methodForSelector:randomAction];
+    void (*func)(id, SEL, ...) = (void *)imp;
+
+    [self.sprites enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        func(self, randomAction, obj);
+    }];
+}
+
 - (void)moveSpriteRandomly:(SKSpriteNode *)sprite
 {
-    SKAction *moveXAction = [SKAction moveToX:arc4random() % (NSInteger)self.size.width duration:5.0f];
-    SKAction *moveYAction = [SKAction moveToY:arc4random() % (NSInteger)self.size.height duration:5.0f];
+    SKAction *moveXAction = [SKAction moveToX:arc4random_uniform((NSInteger)self.size.width) duration:5.0f];
+    SKAction *moveYAction = [SKAction moveToY:arc4random_uniform((NSInteger)self.size.height) duration:5.0f];
     
     __weak SGAGameScene *weakSelf = self;
     [sprite runAction:[SKAction group:@[moveXAction, moveYAction]] completion:^{
@@ -110,9 +149,25 @@
     }];
 }
 
-- (void)update:(CFTimeInterval)currentTime
+- (void)rotateSpriteRandomly:(SKSpriteNode *)sprite
 {
-    /* Called before each frame is rendered */
+    NSInteger randomGradus = arc4random_uniform(360);
+    CGFloat radian = randomGradus * M_PI / 180.0f;
+    
+    __weak SGAGameScene *weakSelf = self;
+    [sprite runAction:[SKAction rotateToAngle:radian duration:5.0f] completion:^{
+        [weakSelf rotateSpriteRandomly:sprite];
+    }];
+}
+
+- (void)scaleSpriteRandomly:(SKSpriteNode *)sprite
+{
+    NSInteger randomScaleFactor = arc4random_uniform(5);
+    
+    __weak SGAGameScene *weakSelf = self;
+    [sprite runAction:[SKAction scaleTo:randomScaleFactor duration:5.0f] completion:^{
+        [weakSelf scaleSpriteRandomly:sprite];
+    }];
 }
 
 #pragma mark - SKPhysicsContactDelegate methods
