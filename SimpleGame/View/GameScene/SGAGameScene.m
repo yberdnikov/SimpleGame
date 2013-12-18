@@ -98,8 +98,6 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    /* Called when a touch begins */
-    
     if (touches.count == 1)
     {
         UITouch *touch = [touches anyObject];
@@ -127,7 +125,6 @@
     
     NSInteger actionIndex = arc4random_uniform(self.spriteActions.count);
     SEL randomAction = NSSelectorFromString([self.spriteActions objectAtIndex:actionIndex]);
-    
     
     //can be much easy - [self performSelector ..], but compiler shows warning, so a little more advanced
     IMP imp = [self methodForSelector:randomAction];
