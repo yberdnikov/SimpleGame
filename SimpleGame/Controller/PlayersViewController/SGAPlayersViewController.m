@@ -102,7 +102,41 @@
     return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle != UITableViewCellEditingStyleDelete)
+        return;
+    
+    //would be better to do it in another queue .. 
+    NSError *error = nil;
+    if (![[NSFileManager defaultManager] removeItemAtPath:[self.contentDataSource objectAtIndex:indexPath.row] error:&error])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                        message:error.localizedDescription
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                              otherButtonTitles:nil];
+        [alert show];
+        
+        return;
+    }
+    
+    [self.contentDataSource removeObjectAtIndex:indexPath.row];
+    
+    [self.contentTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
 #pragma mark - UITableViewSelegate methods
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
